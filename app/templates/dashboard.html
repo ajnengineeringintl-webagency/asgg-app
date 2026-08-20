@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARISE AND SHINE - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/asgg-app.css') }}">
+</head>
+<body>
+    <h1> JESUS</h1>
+    <nav>
+        <div class="logo">
+            <img src="../static/images/ARISE AND SHINE.png" alt="asgg-logo">
+            <h1>ARISE AND SHINE</h1>
+        </div>
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/authentication/signin">Signin</a></li>
+            <li><a href="/authentication/create-account">Signup</a></li>
+            <li><a href="/authentication/signout">signout</a></li>
+            <li><a href="/recordings" class="btn">Create New +</a></li>
+        </ul>
+    </nav>
+    <div class=" container formbx  ">
+        <h1>WELcome To Dashboard: <div class="logom"><img src="{{ signedin_user.user_avater }}" alt="profile-pic"></div> {{ signedin_user.name }}</h1>
+    </div>
+    <div class=" formbx ce">
+        <div class="fex  formbx">
+            {% for user in data %}
+            <div class="cb">
+                    <h3 class="user">{{ user['userid'] }} <a href="">{{ user['userid'] }}</a></h3>
+                    <h3 class="user"><span>Name:</span> {{ user['name'] }} <a href="/profile/{{ user['userid'] }}">edit</a></h3>
+                    <h3 class="user"><span>Email:</span> {{ user['email'] }} </h3>
+                    <h3 class="user"><span>Joined :</span> {{ user['date_joined'] }} </h3>
+                    
+                </div>
+            {% endfor %}
+        </div>
+        <div class="fex formbx">
+            {% for recordpodcast in recordedpodcasts %}
+                <div class="cb">
+                    <h3 class="user"><span>Title:</span> {{ recordpodcast['title'] }} <a href="/recordings/veiw/{{ recordpodcast['recordingid'] }}">edit</a> <a href="/recordings/delete/{{ recordpodcast['recordingid'] }} "onclick='func_alert_call()' class='delete'>delete</a></h3>
+                    <h3 class="user"><span>Information:</span> {{ recordpodcast['information'] }} </h3>
+                    <h3 class="user"><span>Upload status:</span> {{ recordpodcast['upload_status'] }} </h3>
+                    <h3 class="user"><span>Uploaded To:</span> {{ recordpodcast['recording_uploaded_to_website'] }} </h3>
+                    <h3 class="user"><span>Recorded:</span> {{ recordpodcast['recorded'] }} </h3>
+                    <h3 class="user"><span>Recorder:</span> {{ recordpodcast['recorder'] }}></h3>
+                    <img src="{{ recordpodcast['recording_cover_img'] }}" alt="recording-cover-img" class="recording_cover_img">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        //PRAISE THE LORD
+        function func_alert_call(){
+            confirmatione = confirm('Do you want to delete this recording?...')
+            if (!confirmatione){
+                event.preventDefault();
+            }
+        }
+    </script>
+</body>
+</html>

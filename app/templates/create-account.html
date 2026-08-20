@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARISE AND SHINE - create account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/asgg-app.css') }}">
+</head>
+<body>
+    <h1> JESUS</h1>
+    <nav>
+        <div class="logo">
+            <img src="../static/images/ARISE AND SHINE.png" alt="asgg-logo">
+            <h1>ARISE AND SHINE</h1>
+        </div>
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/authentication/signin">Signin</a></li>
+            <li><a href="/authentication/create-account">Signup</a></li>
+            <li><a href="/authentication/signout">signout</a></li>
+            <li><a href="/recordings" class="btn">Create New +</a></li>
+        </ul>
+    </nav>
+    <div class="container formbx">
+        <p>create account page:</p>
+        <p>Welcome...</p>
+        <p>Please create an account below to continue to the dashboard control panel</p>
+
+        <form href='/create-account' enctype="multipart/form-data" method="post">
+            <h1>Enter Details To Sign Up:</h1>
+            <label for="name">Enter name:</label>
+            <input type="text" name="name" required id="name">
+            <label for="email">Enter Email:</label>
+            <input type="email" name="email" required id="email">
+            <label for="passw">Enter Password:</label>
+            <input type="password" name="passw" required id="passw">
+            <label for="user-avater">Upload User Avater:</label>
+            <input type="file" name="user_avater"  id="user_avater">
+            <label for="youtube-link">Enter User Youtbube Link:</label>
+            <input type="text" name="youtube-link"  id="youtube-link">
+            <label for="rss-link">Enter User RSS Link:</label>
+            <input type="text" name="rss-link"  id="rss-link">
+            <label for="facebook-linkr">Enter User Facebook Link:</label>
+            <input type="text" name="facebook-link"  id="facebook-link">
+            <label for="buzzsprout-link">Enter User Buzzsprout Link:</label>
+            <input type="text" name="buzzsprout-link"  id="buzzsprout-link">
+            <label for="mixlr-link">Enter User Mixlr Link:</label>
+            <input type="text" name="mixlr-link"  id="mixlr-link">
+            <input type="submit" class="btn" value="SignIn">
+
+        </form>
+    </div>
+    <!---below ord--->
+</body>
+
+</html>

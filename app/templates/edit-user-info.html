@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARISE AND SHINE - edit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/asgg-app.css') }}">
+</head>
+<body>
+    <h1> JESUS</h1>
+    <nav>
+        <div class="logo">
+            <img src="../static/images/ARISE AND SHINE.png" alt="asgg-logo">
+            <h1>ARISE AND SHINE</h1>
+        </div>
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/authentication/signin">Signin</a></li>
+            <li><a href="/authentication/create-account">Signup</a></li>
+            <li><a href="/recordings" class="btn">Create New +</a></li>
+            <li><a href="/authentication/signout">signout</a></li>
+        </ul>
+    </nav>
+    <div class="container formbx">
+        <p>Edit user page:</p>
+        <p>Welcome...</p>
+        <p>Please fill in the feilds below to Edit a  recording and add it upload <br> it to the database then proceed control panel</p>
+        {{ template_info }}
+        <form href='/profile/put/{{ template_info["userid"] }}' enctype="multipart/form-data" method="">
+            <h1>Enter Details To Here:</h1>
+            <label for="name">Enter Name:</label>
+            <input type="text" name="name" required id="name" value="{{ template_info['name'] }}">
+            <label for="email">Enter Email:</label>
+            <input type="email" name="email" required value="{{ template_info['email'] }}" id="email">
+            <label for="passw">Enter Password:</label>
+            <input type="text" name="passw" required value="{{ template_info['password'] }}" id="passw">
+            <input type="submit" class="btn" value="Save New User Info">
+
+        </form>
+    </div>
+    <!---below ord <label for="passw">Enter Recording upload Date:</label>
+            <input type="date" name="date" required id="date">--->
+</body>
+
+</html>

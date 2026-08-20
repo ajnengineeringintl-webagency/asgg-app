@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARISE AND SHINE - edit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/asgg-app.css') }}">
+</head>
+<body>
+    <h1> JESUS</h1>
+    <nav>
+        <div class="logo">
+            <img src="../static/images/ARISE AND SHINE.png" alt="asgg-logo">
+            <h1>ARISE AND SHINE</h1>
+        </div>
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/authentication/signin">Signin</a></li>
+            <li><a href="/authentication/create-account">Signup</a></li>
+            <li><a href="/recordings" class="btn">Create New +</a></li>
+            <li><a href="/authentication/signout">signout</a></li>
+        </ul>
+    </nav>
+    <div class="container formbx">
+        <p>Edit recording page:</p>
+        <p>Welcome...</p>
+        <p>Please fill in the feilds below to Edit a  recording and add it upload <br> it to the database then proceed control panel</p>
+
+        <form>
+            <h1>Enter Details To Here:</h1>
+            <label for="title">Enter Recording Title: {{ data['title'] }}</label>
+            <p id="rcid" hidden>{{data["recordingid"] }}</p>
+            <input type="text" name="title" required id="title" value="" >
+            <label for="information">Enter Recording Information: {{ data['information'] }}</label>
+            <textarea type="text" name="information" required  id="information"></textarea>
+            <label for="status">Enter Recording upload Status: {{ data['upload_status'] }}</label>
+            <input type="text" name="status" required id="status">
+            <label>
+                <input type="checkbox" onclick="pre()" value="Save Changes"> Save Changes
+            </label>
+            <input type="" class="btn" onclick="edit_record()" value="Save New Recording">
+
+        </form>
+    </div>
+    <!---below ord <label for="passw">Enter Recording upload Date:</label>-->
+   <script>
+        //PRAISE THE LORD
+        var title = document.getElementById('title').value;
+        var information = document.getElementById('information').innerHTML;
+        var _status = document.getElementById('status').value;
+        function pre(){
+            console.log(title,information)
+        }
+        function onchg(){
+            var title = document.getElementById('title').value;
+            var information = document.getElementById('information').value;
+            var _status = document.getElementById('status').value;
+        }
+        const rcid = document.getElementById('rcid').innerHTML;
+        console.log(rcid)
+        function edit_record(){
+            func_alert_call()
+            const new_form_data = {
+                 'title':title,
+                 'information':information,
+                 'status':_status
+             };
+             fetch(`/recordings/edit/${rcid}`,{
+                 method: 'PUT', headers:{ 'content-type':'application/json'},
+                 body:JSON.stringify(new_form_data)
+     
+             }
+             ).then(res => res.json()).then(data => { console.log("updated", data);}).catch(err =>{ console.log("er",err);});
+             
+            }
+        function func_alert_call(){
+            confirmatione = confirm('Do you want to save this recording?...')
+            if (!confirmatione){
+                event.preventDefault();
+            }
+        }
+    </script>
+    <!--- <input type="date" name="date" required id="date">--->
+</body>
+
+</html>

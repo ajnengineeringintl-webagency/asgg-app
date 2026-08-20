@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARISE AND SHINE - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/asgg-app_v1_0_1_0.css') }}">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1> JESUS</h1>
+    
+    <header>
+        <div class="header-information-bx">
+            <div class="user">
+                <img src="{{ signed_user['user_avater'] }}">
+                <h1 id="user_name"> {{ signed_user['name'] }}</h1>
+            </div>
+            <div class="profiles">
+                <h3 class="title">Socials:</h3>
+                <div class="info">
+                    <h3><i class="email-icon"></i> Email: <span id="user_email">{{ signed_user['email'] }}</span></h3>
+                    <h3><i class="email-icon"></i> Youtube: <span id="user_email">{{ signed_user['social_links_youtube'] }}</span></h3>
+                    <h3><i class="email-icon"></i> Rss: <span id="user_rss">{{ signed_user['social_links_rss'] }}/span></h3>
+                    <h3><i class="email-icon"></i> Facebook: <span id="user_facebook">{{ signed_user['social_links_facebook'] }}</span></h3>
+                    <h3><i class="email-icon"></i> Mixlr: <span id="user_facebook">{{ signed_user['social_links_mixlr'] }}</span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="header-logo-bx">
+            <a href="/">
+                <img src="../static/images/ARISE AND SHINE.png" alt="asgg-logo">
+                <h2> ARISE AND SHINE IN GOD'S GLORY</h2>
+            </a>
+            <h3>Podcast Recordings Storage App Dashboard</h3>
+        </div>
+        <div class="header-side-panel-bx">
+            <a href="/">Dashboard</a>
+            <a href="/blog">Blog</a>
+            <a href="/recordings">Create New +</a>
+        </div>
+    </header>
+    <div class="sidebar" id="side-bar"><i class="bx bx-apps" ></i></div>
+    <main>
+        <section id="side-bar-r">
+            <div class="side-bartop">
+                <p>Welcome to the ARISE AND SHINE IN GOD'S GLORY Podcast and Recordings Storage database Dashboard. You can manage your profile from here.</p>
+            </div>
+            <div class="signout"><a href='authentication/signout'> <i class="bx bx-arrow-out-left-square-half"></i> Signout</a></div>
+        </section>
+        <div class="main-dashboard">
+            <h3 class="intro">Welcome {{ signed_user['name'] }} to the Dashboard. These are the podcasts and recordings uploaded to this database.</h3>
+            {% for recorded in recordedpodcasts %}
+                <div class="podcast">
+                    <img src="{{ recorded['recording_cover_img'] }}">
+                    <div class="podcast-info">
+                        <p>Title: <span>{{ recorded['title'] }}</span></p>
+                        <p>Information: <span>"{{ recorded['information'] }}</span></p>
+                        <p>Upload Status: <span>"{{ recorded['upload_status'] }}</span></p>
+                        <p>Hosts: <span>{{ recorded['recorder'] }}</span></p>
+                        <p>Date Uploaded: <span>{{ recorded['recorded'] }}</span></p>
+                        <p>Uploaded To:
+                            <ul  class="links">
+                                <li><a href="{{ recorded['upload_link_youtube'] }}">Youtube</a></li>
+                                <li><a href="{{ recorded['upload_link_mixlr'] }}">Mixlr</a></li>
+                        </ul></p>
+                        <div class="btns">
+                            <a href="/recordings/edit/{{ recorded['recordingid'] }}"> <i class="bx bx-edit"></i> edit</a>
+                            <a class="dt" onclick="func_alert_call()" href="/recordings/delete/{{ recorded['recordingid'] }}"><i class="bx bx-trash"></i> delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <p>PRAISE THE LORD</p><a href="/"> -- ASGG -- asgg.com -- Copyrite@2026</a>
+    </footer>
+
+
+
+    
+    <script>
+        //PRAISE THE LORD
+        function func_alert_call(){
+            confirmatione = confirm('Do you want to delete this recording?...')
+            if (!confirmatione){
+                event.preventDefault();
+            }
+        }
+        const sidebar = document.getElementById('side-bar');
+        const mainsidebar = document.getElementById('side-bar-r');
+        const maindash = document.querySelector('.main-dashboard');
+        const headerdash = document.querySelector('header');
+        sidebar.addEventListener('click',()=>{
+            mainsidebar.classList.toggle('toggle-s')
+            maindash.classList.toggle('toggled')
+            headerdash.classList.toggle('toggled')
+        })
+    </script>
+</body>
+</html>
