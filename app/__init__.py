@@ -12,7 +12,7 @@ def asgg_app_server():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("SQLALCHEMY_DATABASE_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    app.config["SECRET_KEY"] =os.environ.get("ASGG-APP-SECRETKEY")
+    app.config["SECRET_KEY"] =os.environ.get("ASGGAPPSECRETKEY")
 
     app.config["AVATER_UPLOAD_FOLDER" ] = os.path.join("app/static", "images")
     app.config["UPLOAD_FOLDER"] = os.path.join("app/static", "recordings-images")
