@@ -1,10 +1,13 @@
 {
     "version": 2,
-    "builds": [
+    "functions":
         {  
-            "src": "*.py",
-            "use": "@vercel/python"
+            "index.py": {
+            "runtime": "@vercel/python"
+            }
         },
+
+    "builds": [
         {  
             "src": "*.html",
             "use": "@vercel/static"
