@@ -14,6 +14,12 @@ def asgg_app_server():
     if database and database.startswith('postgres://'):
         database =  database.replace('postgres://', 'postgresql://',1)
     application.config["SQLALCHEMY_DATABASE_URI"] = database
+    application.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+        "pool_size":1,
+        "max_overflow":0,
+        "pool_recycle":120,
+        "pool_pre_ping":True
+    }
     application.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     application.config["SECRET_KEY"] =os.environ.get("ASGGAPPSECRETKEY")
