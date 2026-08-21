@@ -1,22 +1,15 @@
 {
     "version": 2,
-    "functions":
-        {  
+    "functions": {  
             "index.py": {
             "runtime": "@vercel/python"
             }
         },
-
-    "builds": [
-        {  
-            "src": "*.html",
-            "use": "@vercel/static"
-        }
-    ],
     "routes": [
         {
             "src": "/(.*)",
             "dest": "index.py"
         }
     ]
+
 }
