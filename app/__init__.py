@@ -9,7 +9,11 @@ load_dotenv()
 db = SQLAlchemy()
 def asgg_app_server(): 
     application = Flask(__name__)
-    application.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("SQLALCHEMY_DATABASE_URI")
+    
+    database = os.getenv("DATABASE")
+    if database and database.startswith('postgres://'):
+        database =  database.replace('postgres://', 'postgresql://',1)
+    application.config["SQLALCHEMY_DATABASE_URI"] = database
     application.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     application.config["SECRET_KEY"] =os.environ.get("ASGGAPPSECRETKEY")
